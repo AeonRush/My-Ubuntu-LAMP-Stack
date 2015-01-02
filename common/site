@@ -1,0 +1,52 @@
+# Default site config :)
+
+	index		index.php index.html index.htm;
+
+
+	location / {
+		try_files	$uri $uri/ 	/index.php?q=$uri&$args;
+	}
+	location ~* ^.+.(js|js|jpg|jpeg|png|gif|ico|svg|ttf|woff)$ {
+		access_log	off;
+		expires		max;
+	}
+	location ~* ^.+.(sql|inc|key|config|phtml)$ {
+		deny		all;
+		access_log	on;
+		log_not_found	on;
+	}
+	location ~ \.php$ {
+		access_log	off;
+		try_files $uri = 404;
+		fastcgi_pass		127.0.0.1:9000;
+		# Development
+		# fastcgi_cache		one;
+		fastcgi_cache_min_uses	3;
+		fastcgi_cache_valid	200 301 302 304 10m;
+		fastcgi_cache_key	"$request_method|$host|$request_uri";
+
+		fastcgi_ignore_headers	"Cache-control" "Expires";
+
+		fastcgi_index		index.php;
+		fastcgi_param		SCRIPT_FILENAME	$document_root$fastcgi_script_name;
+
+		include			fastcgi_params;
+	}
+
+	location = /favicon.ico {
+		allow 		all;
+		access_log	off;
+		log_not_found	off;
+	}
+	location = /robots.txt {
+		allow		all;
+		access_log	off;
+		log_not_found	off;
+	}
+
+	location ~ /\.ht {
+		deny		all;
+		access_log	on;
+		log_not_found	on;
+	}
+
