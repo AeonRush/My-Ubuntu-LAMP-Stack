@@ -4,7 +4,7 @@
 
 
 	location / {
-		try_files	$uri $uri/ 	/index.php?q=$uri&$args;
+		try_files	$uri $uri/ 	/index.php; # ?q=$uri&$args;
 	}
 	location ~* ^.+.(js|js|jpg|jpeg|png|gif|ico|svg|ttf|woff)$ {
 		access_log	off;
