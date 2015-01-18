@@ -11,3 +11,9 @@ sudo apt-get install php5-cli php5-common php5-mysql php5-gd php5-fpm php5-cgi p
 listen	= 127.0.0.1:9000
 
 https://github.com/AeonRush/nginx-php5-fpm-config/blob/master/nginx/common/site#L21
+
+Настройка "нормального" отображения шрифтов в Phpstorm и Webstorm
+=====================
+-Dawt.useSystemAAFontSettings=gasp
+-Dswing.aatext=aa
+-Dsun.java2d.xrender=true
